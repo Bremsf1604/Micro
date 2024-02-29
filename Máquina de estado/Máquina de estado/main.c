@@ -13,7 +13,7 @@
 #define inFalse 1
 #define TIME_Ca 60
 
-//Código: Máquina de estados
+//CÃ³digo: MÃ¡quina de estados
 
 int Func_ESTADO_ERROR(void);
 int Func_ESTADO_ABIERTO(void);
@@ -199,10 +199,9 @@ int Func_ESTADO_INIT(void)
     }
 }
 
-void intGeneral100ms(void)//Función de interrupcion de tiempo general
+void intGeneral100ms(void)
 {
     static int cont_int = 0;
-
     cont_int++;
 
     if(cont_int == 9)
@@ -211,51 +210,46 @@ void intGeneral100ms(void)//Función de interrupcion de tiempo general
         cont_int = 0;
     }
 
-    if(inout.Bc == TRUE)//leg
+    if(HAL_GPIO_Read(PUERTO, PIN_Bc))//leg
     {
-        HAL_GPIO_Write(PUERTO,PIN_Bc,1);
+        inout.Bc = TRUE;
     }else
     {
-        HAL_GPIO_Write(PUERTO,PIN_Bc,0);
+        inout.Bc = FALSE;
     }
-
-    if(inout.Ba == TRUE)//leg
+    if(HAL_GPIO_Read(PUERTO, PIN_Ba))//leg
     {
-        HAL_GPIO_Write(PUERTO,PIN_Ba,1);
+        inout.Ba = TRUE;
     }else
     {
-        HAL_GPIO_Write(PUERTO,PIN_Ba,0);
+        inout.Ba = FALSE;
     }
-
-    if(inout.Sa == TRUE)//leg
+    if(HAL_GPIO_Read(PUERTO, PIN_Sc))//leg
     {
-        HAL_GPIO_Write(PUERTO,PIN_Sa,1);
+        inout.Sc = TRUE;
     }else
     {
-        HAL_GPIO_Write(PUERTO,PIN_Sa,0);
+        inout.Sc = FALSE;
     }
-
-    if(inout.Sc == TRUE)//leg
+    if(HAL_GPIO_Read(PUERTO, PIN_Sa))//leg
     {
-        HAL_GPIO_Write(PUERTO,PIN_Sc,1);
+        inout.Sa = TRUE;
     }else
     {
-        HAL_GPIO_Write(PUERTO,PIN_Sc,0);
+        inout.Sa = FALSE;
     }
-
     if(inout.Ma == TRUE)//leg
     {
-        HAL_GPIO_Write(PUERTO,PIN_Ma,1);
+        HAL_GPIO_Write(PUERTO, PIN_Ma,1);
     }else
     {
-        HAL_GPIO_Write(PUERTO,PIN_Ma,0);
+        HAL_GPIO_Write(PUERTO, PIN_Ma,0);
     }
-
     if(inout.Mc == TRUE)//leg
     {
-        HAL_GPIO_Write(PUERTO,PIN_Mc,1);
+        HAL_GPIO_Write(PUERTO, PIN_Mc,1);
     }else
     {
-        HAL_GPIO_Write(PUERTO,PIN_Mc,0);
+        HAL_GPIO_Write(PUERTO, PIN_Mc,0);
     }
 }
